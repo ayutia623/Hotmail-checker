@@ -13,7 +13,6 @@ import {
   ChevronUp,
   ChevronDown,
   Mail,
-  AlertTriangle,
 } from 'lucide-react';
 import type { CheckResult } from '@/lib/types';
 import { formatDate, formatDuration, exportToCSV, exportToJSON, downloadFile, cn } from '@/lib/utils';

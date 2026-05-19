@@ -285,6 +285,7 @@ export interface HealthCheckResponse {
     api: boolean;
   };
   uptime?: number;
+  responseTime?: number;
 }
 
 /**

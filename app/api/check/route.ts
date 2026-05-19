@@ -358,7 +358,7 @@ function validateCheckRequest(body: any): { valid: boolean; error?: string } {
 if (typeof setInterval !== 'undefined') {
   setInterval(() => {
     const now = Date.now();
-    for (const [sessionId, session] of activeSessions.entries()) {
+    for (const [sessionId, session] of Array.from(activeSessions.entries())) {
       const age = now - session.stats.startTime.getTime();
       // Remove completed sessions older than 1 hour
       if (session.status === 'completed' && age > 3600000) {

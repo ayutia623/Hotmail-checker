@@ -9,7 +9,6 @@ import type {
   EmailMessage,
   KeywordMatch,
   InboxCapture,
-  HOTMAIL_IMAP_CONFIG,
 } from './types';
 import { delay, getErrorMessage, retryWithBackoff } from './utils';
 
@@ -132,6 +131,11 @@ export class HotmailChecker {
 
     // Fetch message UIDs
     const seqNums = await client.search({ all: true });
+    
+    // Check if seqNums is valid array
+    if (!Array.isArray(seqNums) || seqNums.length === 0) {
+      return { messages: [], matches: [] };
+    }
     
     // Limit search to most recent messages
     const maxMessages = Math.min(seqNums.length, this.config.maxMessagesToCapture);
@@ -295,7 +299,8 @@ export class HotmailChecker {
     // Get folder list
     const folders: string[] = [];
     try {
-      for await (const mailbox of client.list()) {
+      const mailboxList = await client.list();
+      for (const mailbox of mailboxList) {
         folders.push(mailbox.path);
       }
     } catch (error) {

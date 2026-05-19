@@ -24,6 +24,7 @@ export async function GET(): Promise<NextResponse<HealthCheckResponse>> {
       timestamp: new Date(),
       services,
       uptime: process.uptime ? process.uptime() : 0,
+      responseTime,
     });
 
   } catch (error) {

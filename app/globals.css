@@ -9,7 +9,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-slate-700;
   }
 
   html {

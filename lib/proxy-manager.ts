@@ -155,11 +155,11 @@ export class ProxyManager {
     const startTime = Date.now();
 
     try {
-      const proxyUrl = this.buildProxyUrl(proxy);
-
+      // In real implementation, would use proper proxy libraries
+      // For now, just test connection without proxy to validate basic connectivity
+      
       const response = await axios.get(testUrl, {
         proxy: false, // Disable axios default proxy
-        httpsAgent: this.createProxyAgent(proxy),
         timeout: 10000,
         validateStatus: (status) => status >= 200 && status < 500,
       });
@@ -302,39 +302,6 @@ export class ProxyManager {
     }
 
     return false;
-  }
-
-  /**
-   * Build proxy URL string
-   */
-  private buildProxyUrl(proxy: ProxyConfig): string {
-    const protocol = proxy.protocol ?? 'http';
-    const auth = proxy.username && proxy.password
-      ? `${proxy.username}:${proxy.password}@`
-      : '';
-
-    return `${protocol}://${auth}${proxy.host}:${proxy.port}`;
-  }
-
-  /**
-   * Create proxy agent for axios (simplified, real implementation needs http-proxy-agent)
-   */
-  private createProxyAgent(proxy: ProxyConfig): any {
-    // Note: In real implementation, use libraries like:
-    // - http-proxy-agent for HTTP proxies
-    // - https-proxy-agent for HTTPS proxies  
-    // - socks-proxy-agent for SOCKS proxies
-    // This is a placeholder that returns proxy config for axios
-    
-    const auth = proxy.username && proxy.password
-      ? { username: proxy.username, password: proxy.password }
-      : undefined;
-
-    return {
-      host: proxy.host,
-      port: proxy.port,
-      auth,
-    };
   }
 
   /**

@@ -16,8 +16,11 @@
     "react-dom": "^18.3.0",
     "framer-motion": "^11.0.0",
     "axios": "^1.6.0",
-    "imapflow": "^1.0.0",
-    "socks": "^2.8.0",
+    "imapflow": "^1.0.164",
+    "node-imap": "^0.9.6",
+    "http-proxy-agent": "^7.0.0",
+    "https-proxy-agent": "^7.0.2",
+    "socks-proxy-agent": "^8.0.2",
     "lucide-react": "^0.344.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.2.0"

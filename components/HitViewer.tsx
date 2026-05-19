@@ -11,10 +11,8 @@ import {
   ChevronUp,
   Copy,
   Download,
-  ExternalLink,
   Tag,
   Inbox,
-  FileText,
   CheckCircle,
 } from 'lucide-react';
 import type { CheckResult } from '@/lib/types';
@@ -99,7 +97,7 @@ export default function HitViewer({ results }: HitViewerProps) {
           {hits.map((result, index) => {
             const isExpanded = expandedId === result.account.email;
             const matchCount = result.matches?.reduce((sum, m) => sum + m.matchCount, 0) || 0;
-            const uniqueKeywords = [...new Set(result.matches?.map(m => m.keyword) || [])];
+            const uniqueKeywords = Array.from(new Set(result.matches?.map(m => m.keyword) || []));
 
             return (
               <motion.div
